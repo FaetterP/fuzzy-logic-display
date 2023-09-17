@@ -1,6 +1,6 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
 import { Triangle } from "fuzzylogic-js";
+import { Layer, Line, Stage } from "react-konva";
 
 type PropsType = {
   x1: number;
@@ -15,25 +15,17 @@ type PropsType = {
 export default function TriangleSet(props: PropsType) {
   const triangle = new Triangle(props.x1, props.x2, props.x3);
 
-  const data: number[] = [];
+  const points: number[] = [];
   for (let i = props.leftX; i <= props.rightX; i += props.step || 0.1) {
-    data.push(triangle.getValue(i));
+    points.push(i);
+    points.push(triangle.getValue(i));
   }
 
   return (
-    <div>
-      <Line
-        data={{
-          datasets: [
-            {
-              label: "Triangle",
-              data,
-              borderColor: "red",
-              backgroundColor: "#FF000066",
-            },
-          ],
-        }}
-      />
-    </div>
+    <Stage width={300} height={300}>
+      <Layer>
+        <Line points={points} />
+      </Layer>
+    </Stage>
   );
 }
