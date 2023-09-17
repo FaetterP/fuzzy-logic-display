@@ -1,1 +1,1 @@
-export * from "./components/TriangleSet";
+export * from "./components/DisplayFuzzySet";
