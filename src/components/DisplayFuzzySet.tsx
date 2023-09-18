@@ -1,6 +1,10 @@
 import React from "react";
 import { FuzzySet } from "fuzzylogic-js";
 import { Layer, Line, Stage } from "react-konva";
+import { getX } from "../utils/math";
+import MaximumLeft from "./MaximumLeft";
+import MaximumRight from "./MaximumRight";
+import MaximumMiddle from "./MaximumMiddle";
 
 type PropsType = {
   fuzzySet: FuzzySet;
@@ -13,20 +17,6 @@ type PropsType = {
   rightX: number;
   step?: number;
 };
-
-React.useLayoutEffect = React.useEffect;
-
-function getX(
-  value: number,
-  sizeLeft: number,
-  sizeRight: number,
-  left: number,
-  right: number
-) {
-  const ret =
-    sizeLeft + (sizeRight - sizeLeft) * ((value - left) / (right - left));
-  return ret;
-}
 
 export default function DisplayFuzzySet(props: PropsType) {
   const points: number[] = [];
@@ -54,7 +44,11 @@ export default function DisplayFuzzySet(props: PropsType) {
         />
         <Line points={[0, 0, props.sizeX, 0]} strokeWidth={1} stroke="black" />
 
-        <Line points={points} strokeWidth={1} stroke={props.color} />
+        <Line points={points} strokeWidth={1} stroke={props.color || "red"} />
+
+        <MaximumLeft {...props} color="green" />
+        <MaximumRight {...props} color="green" />
+        <MaximumMiddle {...props} color="green" />
       </Layer>
     </Stage>
   );
