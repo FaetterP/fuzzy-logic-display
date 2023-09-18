@@ -1,17 +1,22 @@
 import React from "react";
 import { FuzzySet } from "fuzzylogic-js";
-import { Layer, Line, Stage } from "react-konva";
+import { Group, Layer, Line, Stage } from "react-konva";
 import { getX } from "../utils/math";
 import MaximumLeft from "./MaximumLeft";
 import MaximumRight from "./MaximumRight";
 import MaximumMiddle from "./MaximumMiddle";
 
 type PropsType = {
-  fuzzySet: FuzzySet;
+  sets: {
+    fuzzySet: FuzzySet;
+    color: string;
+    isShowMaximumLeft: boolean;
+    isShowMaximumRight: boolean;
+    isShowMaximumMiddle: boolean;
+  }[];
 
   sizeX: number;
   sizeY: number;
-  color?: string;
 
   leftX: number;
   rightX: number;
@@ -19,10 +24,15 @@ type PropsType = {
 };
 
 export default function DisplayFuzzySet(props: PropsType) {
-  const points: number[] = [];
-  for (let i = props.leftX; i <= props.rightX; i += props.step || 0.1) {
-    points.push(getX(i, 0, props.sizeX, props.leftX, props.rightX));
-    points.push(props.sizeY - props.fuzzySet.getValue(i) * props.sizeY);
+  function getPoint(fuzzySet: FuzzySet) {
+    const points: number[] = [];
+
+    for (let i = props.leftX; i <= props.rightX; i += props.step || 0.1) {
+      points.push(getX(i, 0, props.sizeX, props.leftX, props.rightX));
+      points.push(props.sizeY - fuzzySet.getValue(i) * props.sizeY);
+    }
+
+    return points;
   }
 
   const zeroX = getX(0, 0, props.sizeX, props.leftX, props.rightX);
@@ -44,11 +54,37 @@ export default function DisplayFuzzySet(props: PropsType) {
         />
         <Line points={[0, 0, props.sizeX, 0]} strokeWidth={1} stroke="black" />
 
-        <Line points={points} strokeWidth={1} stroke={props.color || "red"} />
+        {props.sets.map((set) => (
+          <Group>
+            <Line
+              points={getPoint(set.fuzzySet)}
+              strokeWidth={1}
+              stroke={set.color || "red"}
+            />
 
-        <MaximumLeft {...props} color="green" />
-        <MaximumRight {...props} color="green" />
-        <MaximumMiddle {...props} color="green" />
+            {set.isShowMaximumLeft && (
+              <MaximumLeft
+                {...props}
+                fuzzySet={set.fuzzySet}
+                color={set.color || "red"}
+              />
+            )}
+            {set.isShowMaximumRight && (
+              <MaximumRight
+                {...props}
+                fuzzySet={set.fuzzySet}
+                color={set.color || "red"}
+              />
+            )}
+            {set.isShowMaximumMiddle && (
+              <MaximumMiddle
+                {...props}
+                fuzzySet={set.fuzzySet}
+                color={set.color || "red"}
+              />
+            )}
+          </Group>
+        ))}
       </Layer>
     </Stage>
   );
