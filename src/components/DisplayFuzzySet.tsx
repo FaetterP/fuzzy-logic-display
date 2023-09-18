@@ -35,9 +35,25 @@ export default function DisplayFuzzySet(props: PropsType) {
     points.push(props.sizeY - props.fuzzySet.getValue(i) * props.sizeY);
   }
 
+  const zeroX = getX(0, 0, props.sizeX, props.leftX, props.rightX);
+
   return (
     <Stage width={props.sizeX} height={props.sizeY}>
       <Layer>
+        {zeroX > 0 && (
+          <Line
+            points={[zeroX, 0, zeroX, props.sizeY]}
+            strokeWidth={1}
+            stroke="black"
+          />
+        )}
+        <Line
+          points={[0, props.sizeY, props.sizeX, props.sizeY]}
+          strokeWidth={1}
+          stroke="black"
+        />
+        <Line points={[0, 0, props.sizeX, 0]} strokeWidth={1} stroke="black" />
+
         <Line points={points} strokeWidth={1} stroke={props.color} />
       </Layer>
     </Stage>

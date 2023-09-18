@@ -16,8 +16,12 @@ function DisplayFuzzySet(props) {
         points.push(getX(i, 0, props.sizeX, props.leftX, props.rightX));
         points.push(props.sizeY - props.fuzzySet.getValue(i) * props.sizeY);
     }
+    const zeroX = getX(0, 0, props.sizeX, props.leftX, props.rightX);
     return (react_1.default.createElement(react_konva_1.Stage, { width: props.sizeX, height: props.sizeY },
         react_1.default.createElement(react_konva_1.Layer, null,
+            zeroX > 0 && (react_1.default.createElement(react_konva_1.Line, { points: [zeroX, 0, zeroX, props.sizeY], strokeWidth: 1, stroke: "black" })),
+            react_1.default.createElement(react_konva_1.Line, { points: [0, props.sizeY, props.sizeX, props.sizeY], strokeWidth: 1, stroke: "black" }),
+            react_1.default.createElement(react_konva_1.Line, { points: [0, 0, props.sizeX, 0], strokeWidth: 1, stroke: "black" }),
             react_1.default.createElement(react_konva_1.Line, { points: points, strokeWidth: 1, stroke: props.color }))));
 }
 exports.default = DisplayFuzzySet;
