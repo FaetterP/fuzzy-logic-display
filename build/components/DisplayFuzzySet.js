@@ -9,6 +9,7 @@ const math_1 = require("../utils/math");
 const MaximumLeft_1 = __importDefault(require("./MaximumLeft"));
 const MaximumRight_1 = __importDefault(require("./MaximumRight"));
 const MaximumMiddle_1 = __importDefault(require("./MaximumMiddle"));
+const Centroid_1 = __importDefault(require("./Centroid"));
 function DisplayFuzzySet(props) {
     function getPoint(fuzzySet) {
         const points = [];
@@ -29,6 +30,6 @@ function DisplayFuzzySet(props) {
                 set.isShowMaximumLeft && (react_1.default.createElement(MaximumLeft_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" })),
                 set.isShowMaximumRight && (react_1.default.createElement(MaximumRight_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" })),
                 set.isShowMaximumMiddle && (react_1.default.createElement(MaximumMiddle_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" })),
-                set.isShowCentroid && (react_1.default.createElement(MaximumMiddle_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" }))))))));
+                set.isShowCentroid && (react_1.default.createElement(Centroid_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" }))))))));
 }
 exports.default = DisplayFuzzySet;

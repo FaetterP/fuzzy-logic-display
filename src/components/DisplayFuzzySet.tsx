@@ -5,6 +5,7 @@ import { getX } from "../utils/math";
 import MaximumLeft from "./MaximumLeft";
 import MaximumRight from "./MaximumRight";
 import MaximumMiddle from "./MaximumMiddle";
+import Centroid from "./Centroid";
 
 type PropsType = {
   sets: {
@@ -85,7 +86,7 @@ export default function DisplayFuzzySet(props: PropsType) {
               />
             )}
             {set.isShowCentroid && (
-              <MaximumMiddle
+              <Centroid
                 {...props}
                 fuzzySet={set.fuzzySet}
                 color={set.color || "red"}
