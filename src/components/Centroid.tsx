@@ -14,9 +14,9 @@ type PropsType = {
   rightX: number;
 };
 
-export default function MaximumLeft(props: PropsType) {
+export default function Centroid(props: PropsType) {
   const x = getX(
-    props.fuzzySet.defuzzyMaxLeft(props.leftX, props.rightX),
+    props.fuzzySet.defuzzyCentroid(props.leftX, props.rightX),
     0,
     props.sizeX,
     props.leftX,

@@ -28,6 +28,7 @@ function DisplayFuzzySet(props) {
                 react_1.default.createElement(react_konva_1.Line, { points: getPoint(set.fuzzySet), strokeWidth: 1, stroke: set.color || "red" }),
                 set.isShowMaximumLeft && (react_1.default.createElement(MaximumLeft_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" })),
                 set.isShowMaximumRight && (react_1.default.createElement(MaximumRight_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" })),
-                set.isShowMaximumMiddle && (react_1.default.createElement(MaximumMiddle_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" }))))))));
+                set.isShowMaximumMiddle && (react_1.default.createElement(MaximumMiddle_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" })),
+                set.isShowCentroid && (react_1.default.createElement(MaximumMiddle_1.default, { ...props, fuzzySet: set.fuzzySet, color: set.color || "red" }))))))));
 }
 exports.default = DisplayFuzzySet;

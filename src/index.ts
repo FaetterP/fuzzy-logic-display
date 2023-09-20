@@ -1,1 +1,3 @@
-export * from "./components/DisplayFuzzySet";
+import DisplayFuzzySet from "./components/DisplayFuzzySet";
+
+export { DisplayFuzzySet };

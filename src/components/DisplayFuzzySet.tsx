@@ -9,10 +9,11 @@ import MaximumMiddle from "./MaximumMiddle";
 type PropsType = {
   sets: {
     fuzzySet: FuzzySet;
-    color: string;
-    isShowMaximumLeft: boolean;
-    isShowMaximumRight: boolean;
-    isShowMaximumMiddle: boolean;
+    color?: string;
+    isShowMaximumLeft?: boolean;
+    isShowMaximumRight?: boolean;
+    isShowMaximumMiddle?: boolean;
+    isShowCentroid?: boolean;
   }[];
 
   sizeX: number;
@@ -77,6 +78,13 @@ export default function DisplayFuzzySet(props: PropsType) {
               />
             )}
             {set.isShowMaximumMiddle && (
+              <MaximumMiddle
+                {...props}
+                fuzzySet={set.fuzzySet}
+                color={set.color || "red"}
+              />
+            )}
+            {set.isShowCentroid && (
               <MaximumMiddle
                 {...props}
                 fuzzySet={set.fuzzySet}

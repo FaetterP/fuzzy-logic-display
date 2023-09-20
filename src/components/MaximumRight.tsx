@@ -15,7 +15,7 @@ type PropsType = {
 };
 
 export default function MaximumRight(props: PropsType) {
-  const centroidX = getX(
+  const x = getX(
     props.fuzzySet.defuzzyMaxRight(props.leftX, props.rightX),
     0,
     props.sizeX,
@@ -25,7 +25,7 @@ export default function MaximumRight(props: PropsType) {
 
   return (
     <Line
-      points={[centroidX, 0, centroidX, props.sizeY]}
+      points={[x, 0, x, props.sizeY]}
       strokeWidth={1}
       stroke={props.color || "black"}
     />

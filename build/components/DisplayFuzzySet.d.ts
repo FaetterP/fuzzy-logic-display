@@ -3,10 +3,11 @@ import { FuzzySet } from "fuzzylogic-js";
 type PropsType = {
     sets: {
         fuzzySet: FuzzySet;
-        color: string;
-        isShowMaximumLeft: boolean;
-        isShowMaximumRight: boolean;
-        isShowMaximumMiddle: boolean;
+        color?: string;
+        isShowMaximumLeft?: boolean;
+        isShowMaximumRight?: boolean;
+        isShowMaximumMiddle?: boolean;
+        isShowCentroid?: boolean;
     }[];
     sizeX: number;
     sizeY: number;
